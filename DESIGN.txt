@@ -1,0 +1,38 @@
+DESIGN.txt 
+Ying Wang 
+CS 308 
+Due 8/28/2015
+
+Genre of Game: 
+Puzzle + Scrolling Platformer
+
+Name and Backstory: 
+Mario the Minesweeper 
+
+Mario gets sucked into a minefield somehow, and must jump on squares in order to escape the minefield. 
+Then he is chased by a giant lava field that is following him for some reason, and he must escape as fast as he can. 
+Will he make it back to Mario World? Or will he get blown up and respawn at the castle? (Seems a lot easier IMHO) 
+
+Goal: 
+
+Mark the mines 
+Figure out where the non-mined areas are 
+Get to the other side of the map 
+Escape the giant lava field that's following you
+
+
+Basic Mechanics: 
+
+Move using arrow keys 
+Mark mines using right click 
+Click on squares using left click 
+
+
+Description of modes and levels:
+- Easy: short path, few mines  
+- Medium: medium path, some mines 
+- Hard: long path, lots of mines  
+
+- Set path: fixed length path with timer to count down how fast Mario gets to the entrance; fail if die 
+- Lava: fixed length path, lava comes after some time and Mario must get to the entrance; pass or fail
+- Survival(maybe?): lava wall coming towards you, Mario has to run for as long as possible, timer keeps score
