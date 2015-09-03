@@ -19,6 +19,13 @@ public class MineButton extends ToggleButton{
 	public void onClick(View v){
 		triggeredButton = true; 
 		this.setSelected(true);
+		
+	}
+	
+	public void reset(){
+		isMine = false;
+		mineNeighbors = 0; 
+		triggeredButton = false;
 	}
 	
 	public int getRowIndex(){
@@ -31,7 +38,7 @@ public class MineButton extends ToggleButton{
 	
 	public void SetMine(){
 		isMine = true; 
-		this.setStyle("-fx-background-color: slateblue");
+		//this.setStyle("-fx-background-color: slateblue");
 	}
 	
 	public boolean isMine(){
@@ -43,11 +50,15 @@ public class MineButton extends ToggleButton{
 	}
 	
 	public void setMineNeighbors(int numberOfNearbyMines){
-		mineNeighbors = numberOfNearbyMines;
+		if(this != null){
+			mineNeighbors = numberOfNearbyMines;
+		}
 	}
 	
 	public void displayMineNeighbors(){
-		this.setText(mineNeighbors.toString());
+		if(this != null){
+			this.setText(mineNeighbors.toString());
+		}
 	}
 	
 	
