@@ -65,7 +65,12 @@ public class ButtonGrid {
 	
 	public void initializeGame(int x, int y){
 		marioDeployed = true; // Mario has been deployed
+		deployMario(x, y);
 		generateMinefield(x, y); // dynamically generate the minefield 
+	}
+	
+	public void deployMario(int x, int y){
+		this.getMineButton(x, y).createMario();
 	}
 	
 	public void exploreMinefield(){
@@ -73,6 +78,7 @@ public class ButtonGrid {
 			keepMineButtonEnabled(button);
 			if(button.isMine()){
 				button.displayMine();
+				button.hitMine();
 			}
 			else{
 				Queue<MineButton> cascadeExploredTiles = new PriorityQueue<MineButton>();

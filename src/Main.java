@@ -12,8 +12,8 @@ public class Main extends Application{
 	}
 	
 	private ButtonGrid myButtonGrid;
-	private static int numRows = 10; 
-	private static int numCols = 10; 
+	private static int numRows = 20; 
+	private static int numCols = 20; 
 	private static int buttonWidth = 25; 
 	private static int buttonHeight = 15;
 	private static double difficultyFactor = 0.25; // between 0 and 1 
@@ -43,11 +43,6 @@ public class Main extends Application{
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
-		
-		
 	}
-
-	
-	
 
 }

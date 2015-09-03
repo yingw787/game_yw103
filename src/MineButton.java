@@ -1,6 +1,8 @@
 import javax.swing.text.View;
 
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class MineButton extends ToggleButton{
 
@@ -61,5 +63,18 @@ public class MineButton extends ToggleButton{
 		}
 	}
 	
+	public void hitMine(){
+		this.setStyle("-fx-background-color: red");
+	}
+	
+	public void createMario(){
+//		Image marioImage = new Image(getClass().getClassLoader().getResourceAsStream("mario.png"));
+//		this.setGraphic(new ImageView(marioImage));
+		// CANT LAYER IN TIME, just make Mario a color
+		
+		this.setStyle("-fx-background-color: slateblue");
+		
+		
+	}
 	
 }
