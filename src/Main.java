@@ -12,11 +12,11 @@ public class Main extends Application{
 	}
 	
 	private ButtonGrid myButtonGrid;
-	private static int numRows = 20; 
-	private static int numCols = 20; 
+	private static int numRows = 10; 
+	private static int numCols = 10; 
 	private static int buttonWidth = 25; 
 	private static int buttonHeight = 15;
-	private static double difficultyFactor = 0.25; // between 0 and 1 
+	private static double difficultyFactor = 0.05; // between 0 and 1 
 	
 	public static final int FRAMES_PER_SECOND = 60;
     private static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
