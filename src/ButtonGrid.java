@@ -22,6 +22,7 @@ public class ButtonGrid {
 	private double difficultyFactor;
 	private int numMines;
 	private Set<MineButton> clickedButtons = new HashSet<MineButton>();
+	private Set<MineButton> mineButtons = new HashSet<MineButton>(); 
 
 	public Scene init(int numRows, int numCols, int buttonWidth, int buttonHeight, double difficulty) {
 		Group root = new Group();
@@ -52,6 +53,7 @@ public class ButtonGrid {
 
 	public void step(double elapsedTime) {
 
+			
 		// keep the selected buttons down so they can't be clicked anymore
 		if (!clickedButtons.isEmpty()) {
 			for (MineButton button : clickedButtons) {
@@ -64,7 +66,9 @@ public class ButtonGrid {
 		if (button != null)
 			exploreMinefield(button);
 		checkGameState(button);
-
+		if(gameWon || gameLost){ // if the game has a conclusion 
+			return;
+		}
 	}
 
 	public MineButton checkForClickedButtons() {
@@ -97,7 +101,8 @@ public class ButtonGrid {
 				generateMinefield(button.rowIndex, button.colIndex);
 			}
 
-			cascadedExplore(button);
+			if(!button.isMine())
+				cascadedExplore(button);
 		}
 
 		// check if the tile clicked is a mine;
@@ -110,6 +115,7 @@ public class ButtonGrid {
 		if (button != null) {
 			if (button.isMine()) {
 				gameLost = true;
+				displayAllMines();
 				System.out.println("Game Lost!");
 			}
 
@@ -117,6 +123,14 @@ public class ButtonGrid {
 				gameWon = true;
 				System.out.println("Game Won!");
 			}
+		}
+	}
+	
+	
+	public void displayAllMines(){
+		for(MineButton button : mineButtons){
+			button.displayMine();
+			button.setColor("red");
 		}
 	}
 
@@ -134,9 +148,6 @@ public class ButtonGrid {
 				Set<MineButton> set = getLegitimateAdjacentTiles(tempButton.rowIndex, tempButton.colIndex);
 
 				for (MineButton b : set) {
-
-//					cascadeExploredTiles.add(b); // DO NOT UNCOMMENT THIS LINE,
-													// THIS WILL BREAK THE CODE
 					b.setSelected(true); // uncover them
 					b.displayMineNeighbors(); // display mineNeighborNumbers
 				}
@@ -158,9 +169,11 @@ public class ButtonGrid {
 		while (minesPlaced < numMines) {
 			int x = random.nextInt(numberOfRows);
 			int y = random.nextInt(numberOfColumns);
-
-			if (!getMineButton(x, y).isMine() && (x != row || y != col)) {
-				getMineButton(x, y).SetMine();
+			MineButton button = getMineButton(x, y);
+			
+			if (!button.isMine() && (x != row || y != col)) {
+				button.SetMine();
+				mineButtons.add(button);
 				// getMineButton(x, y).setColor("red");
 				minesPlaced++;
 			}
@@ -191,11 +204,8 @@ public class ButtonGrid {
 		return neighborMines;
 	}
 
-	private Set<MineButton> getLegitimateAdjacentTiles(int row, int col) { // not
-																			// null
-																			// tiles
+	private Set<MineButton> getLegitimateAdjacentTiles(int row, int col) { 
 		Set<MineButton> set = new HashSet<MineButton>();
-
 		for (int i = row - 1; i < row + 2; i++) {
 			for (int j = col - 1; j < col + 2; j++) {
 				MineButton tempButton = getMineButton(i, j);
